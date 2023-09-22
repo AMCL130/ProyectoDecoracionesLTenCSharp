@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DecoracionesLTv4.props" />
+</Project>

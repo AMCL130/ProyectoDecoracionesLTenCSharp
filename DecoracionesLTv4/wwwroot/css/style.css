@@ -1,0 +1,33 @@
+﻿/* Definir colores personalizados */
+.btn-purple {
+    background-color: #8e44ad; /* Color morado */
+    color: #fff; /* Texto blanco */
+    border-color: #8e44ad; /* Borde morado */
+}
+
+    .btn-purple:hover {
+        background-color: #7d3c98; /* Color morado más oscuro al pasar el mouse */
+        border-color: #7d3c98;
+    }
+
+.btn-purple-light {
+    background-color: #af7ac5; /* Color morado claro */
+    color: #fff;
+    border-color: #af7ac5;
+}
+
+    .btn-purple-light:hover {
+        background-color: #9e6dbb; /* Color morado claro más oscuro al pasar el mouse */
+        border-color: #9e6dbb;
+    }
+
+.btn-purple-dark {
+    background-color: #6c3483; /* Color morado oscuro */
+    color: #fff;
+    border-color: #6c3483;
+}
+
+    .btn-purple-dark:hover {
+        background-color: #5b2d77; /* Color morado oscuro más oscuro al pasar el mouse */
+        border-color: #5b2d77;
+    }

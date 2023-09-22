@@ -1,0 +1,143 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row mt-2">
+
+    <div class="col-sm-6">
+
+        <div class="card">
+            <div class="card-header">Clientes ultimos 5 días </div>
+            <div class="card-body">
+                <canvas id="chartClientes" style="max-height:250px"></canvas>
+                
+            </div>
+        </div>
+        
+    </div>
+
+ 
+</div>
+
+<div class="row mt-2">
+
+    <div class="col-sm-6">
+
+        <div class="card">
+            <div class="card-header">Categorias mas vendidas en los ultimos 5 días </div>
+            <div class="card-body">
+                <canvas id="chartCategorias" style="max-height:250px"></canvas>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+@section Scripts{
+
+    <script>
+
+        function resumenClientes() {
+
+            fetch("Home/resumenClientes")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+
+
+                    const labels = dataJson.map((item) => { return item.fecha })
+                    const values = dataJson.map((item) => { return item.cantidad })
+
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Cantidad',
+                            data: values,
+                            backgroundColor: 'rgb(189, 110, 212)',
+                            borderWidth: 2
+                        }]
+                    };
+
+                    const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        },
+                    };
+
+                    const canvasBarras = document.getElementById("chartClientes");
+
+                    const graficoBarras = new Chart(canvasBarras, config)
+                }).catch((error) => {
+                    console.log("error")
+                })
+        }
+
+
+
+        function resumenCategorias() {
+
+            fetch("Home/resumenCategorias")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response);
+                })
+                .then((dataJson) => {
+
+
+                    const labels = dataJson.map((item) => { return item.fecha })
+                    const values = dataJson.map((item) => { return item.cantidad })
+
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Cantidad',
+                            data: values,
+                            backgroundColor: 'rgb(189, 110, 212)',
+                            borderWidth: 2
+                        }]
+                    };
+
+                    const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        },
+                    };
+
+                    const canvasBarras = document.getElementById("chartCategorias");
+
+                    const graficoBarras = new Chart(canvasBarras, config)
+                }).catch((error) => {
+                    console.log("error")
+                })
+        }
+
+
+
+        $(document).ready(() => {
+        
+        resumenClientes()
+        resumenCategorias()
+        
+        })
+
+
+    </script>
+
+}
